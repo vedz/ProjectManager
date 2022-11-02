@@ -2,18 +2,25 @@
 
 /**
  * This module executes inside of electron's main process. You can start
- * electron renderer process from here and communicate with the other processes
+ * electron renderer process from here and communicate with th e other processes
  * through IPC.
  *
  * When running `npm run build` or `npm run build:main`, this file is compiled to
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import { getProjects } from '../api/directory';
+
+const sqlite3 = require('sqlite3').verbose();
+
+export const db = new sqlite3.Database('database');
+const config = require('../api/config');
+
 
 class AppUpdater {
   constructor() {
@@ -30,6 +37,8 @@ ipcMain.on('ipc-example', async (event, arg) => {
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
 });
+
+ipcMain.handle('project:get', getProjects);
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
