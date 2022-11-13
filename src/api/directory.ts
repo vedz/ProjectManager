@@ -1,24 +1,15 @@
+import { IProject } from '../lib/types';
+import { technologiesKeys } from '../lib/technologies';
+
 const fs = require('fs');
 const path = require('path');
 const config = require('./config');
 
-export interface IProject {
-  name: string;
-  technologies: ITechnology[];
-  version: string;
-}
-
-interface ITechnology {
-  name: string;
-  version: string;
-}
-
-const keyDepedencies = {
+const keyDepedencies: Record<string, string[]> = {
   'composer.json': ['require', 'require-dev'],
   'package.json': ['depedencies'],
 };
 const filesToSearch = Object.keys(keyDepedencies);
-const technologies = ['symfony/framework-bundle', 'angular', 'react', 'vue'];
 
 const getProjectInfos = (filePath: string): IProject | null => {
   const projet: IProject = {
@@ -38,7 +29,11 @@ const getProjectInfos = (filePath: string): IProject | null => {
     if (contentStr) {
       isFound = true;
       const contentObj = JSON.parse(contentStr);
-      for (const technology of technologies) {
+      /**
+       * TODO Remplacer technologiesKeys par la nouvelle variable technologies du fichier technologies.ts
+       *  Pour récupérer directement le libellé et l'icône.
+       */
+      for (const technology of technologiesKeys) {
         for (const depedencyKey of keyDepedencies[file]) {
           if (
             contentObj[depedencyKey] &&

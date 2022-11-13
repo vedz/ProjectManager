@@ -1,11 +1,9 @@
+import { IConfig } from '../lib/types';
+
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 const { app } = require('electron');
-
-interface IConfig {
-  directories: string[];
-}
 
 const DEFAULT_CONFIG: IConfig = {
   directories: [],
