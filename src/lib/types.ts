@@ -5,10 +5,27 @@ export interface IProject {
 }
 
 export interface ITechnology {
-  name: string;
+  name: TechnologiesTypes;
   version: string;
 }
 
 export interface IConfig {
   directories: string[];
 }
+
+interface TechnologiesDetails {
+  icon: string;
+  label: string;
+}
+
+export type Technologies = {
+  [K in TechnologiesTypes]: TechnologiesDetails;
+};
+
+export type TechnologiesTypes =
+  | 'symfony/framework-bundle'
+  | '@angular/core'
+  | 'react'
+  | 'vue'
+  | '@capacitor/core'
+  | '@ionic/angular';

@@ -7,7 +7,7 @@ const config = require('./config');
 
 const keyDepedencies: Record<string, string[]> = {
   'composer.json': ['require', 'require-dev'],
-  'package.json': ['depedencies'],
+  'package.json': ['dependencies'],
 };
 const filesToSearch = Object.keys(keyDepedencies);
 
@@ -29,10 +29,6 @@ const getProjectInfos = (filePath: string): IProject | null => {
     if (contentStr) {
       isFound = true;
       const contentObj = JSON.parse(contentStr);
-      /**
-       * TODO Remplacer technologiesKeys par la nouvelle variable technologies du fichier technologies.ts
-       *  Pour récupérer directement le libellé et l'icône.
-       */
       for (const technology of technologiesKeys) {
         for (const depedencyKey of keyDepedencies[file]) {
           if (
@@ -58,10 +54,8 @@ const getProjectInfos = (filePath: string): IProject | null => {
 };
 
 export const getProjects = (): IProject[] => {
-  console.log(config);
   const projects = [];
   for (const directory of config.directories) {
-    console.log(directory);
     let projectFiles: string[] = [];
     try {
       projectFiles = fs.readdirSync(directory);
@@ -69,7 +63,6 @@ export const getProjects = (): IProject[] => {
       console.error(`Le dossier ${directory} n'existe pas`);
       continue;
     }
-    console.log(projectFiles);
     for (const project of projectFiles) {
       const projectInfos = getProjectInfos(path.join(directory, project));
       if (projectInfos) {

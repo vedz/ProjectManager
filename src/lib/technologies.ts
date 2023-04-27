@@ -1,34 +1,38 @@
-export const technologiesKeys = [
-  'symfony/framework-bundle',
-  'angular',
-  'react',
-  'vue',
-] as const;
+import { Technologies, TechnologiesTypes } from './types';
 
-type TechnologiesDetails = {
-  icon: string;
-  label: string;
-};
-type Technologies = {
-  [K in typeof technologiesKeys[number]]: TechnologiesDetails;
-};
+export const technologiesKeys: TechnologiesTypes[] = [
+  'symfony/framework-bundle',
+  'vue',
+  '@angular/core',
+  'react',
+  '@ionic/angular',
+  '@capacitor/core',
+];
 
 const technologies: Technologies = {
   'symfony/framework-bundle': {
-    icon: '/assets/symfony.png',
+    icon: 'symfony',
     label: 'Symfony',
   },
   vue: {
-    icon: '',
+    icon: 'vue',
     label: 'Vue',
   },
   react: {
-    icon: '',
+    icon: 'react',
     label: 'React',
   },
-  angular: {
-    icon: '',
+  '@angular/core': {
+    icon: 'angular',
     label: 'Angular',
+  },
+  '@ionic/angular': {
+    icon: 'ionic',
+    label: 'Ionic',
+  },
+  '@capacitor/core': {
+    icon: 'capacitor',
+    label: 'Capacitor',
   },
 };
 
