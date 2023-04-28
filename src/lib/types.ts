@@ -1,16 +1,14 @@
-export interface IProject {
-  name: string;
-  technologies: ITechnology[];
-  version: string;
-}
+export type TechnologiesTypes =
+  | 'symfony/framework-bundle'
+  | '@angular/core'
+  | 'react'
+  | 'vue'
+  | '@capacitor/core'
+  | '@ionic/angular';
 
-export interface ITechnology {
-  name: TechnologiesTypes;
-  version: string;
-}
-
-export interface IConfig {
-  directories: string[];
+export enum FilesNameProject {
+  PACKAGE_JSON = 'package.json',
+  COMPOSER_JSON = 'composer.json',
 }
 
 interface TechnologiesDetails {
@@ -22,10 +20,20 @@ export type Technologies = {
   [K in TechnologiesTypes]: TechnologiesDetails;
 };
 
-export type TechnologiesTypes =
-  | 'symfony/framework-bundle'
-  | '@angular/core'
-  | 'react'
-  | 'vue'
-  | '@capacitor/core'
-  | '@ionic/angular';
+export interface ITechnology {
+  name: TechnologiesTypes;
+  version: string;
+}
+
+export interface IProject {
+  name: string;
+  technologies: ITechnology[];
+  version: string;
+  composerJson: Record<string, any> | null;
+  packageJson: Record<string, any> | null;
+  description: string;
+}
+
+export interface IConfig {
+  directories: string[];
+}

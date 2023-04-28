@@ -3,7 +3,7 @@ import { TabProps } from '../components/Tabs/Tab';
 import Projects from '../components/Project/Projects';
 import Tabs from '../components/Tabs/Tabs';
 
-const Index = () => {
+function Index() {
   console.log('[COMPONENT] INDEX');
 
   const [tabs, setTabs] = useState<TabProps[]>([]);
@@ -40,23 +40,27 @@ const Index = () => {
         },
       ];
     });
+
+    // cleanup fonction
+    return () => {
+      setTabs(() => {
+        return [];
+      });
+    };
   }, []);
 
   return (
     <div>
       <Tabs tabs={tabs} activateTab={handleActiveTab} />
       <div>
-        {tabs.map(
-          (t) => (
-            <div key={t.title} className={t.active ? '' : 'hidden'}>
-              {t.component}
-            </div>
-          )
-          // <TabContent component={t.component} active={t.active} key={t.title} />
-        )}
+        {tabs.map((t) => (
+          <div key={t.title} className={t.active ? '' : 'hidden'}>
+            {t.component}
+          </div>
+        ))}
       </div>
     </div>
   );
-};
+}
 
 export default Index;

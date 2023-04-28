@@ -8,7 +8,7 @@ import ClassGenerator from '../ClassGenerator/ClassGenerator';
 type ProjectsProps = {
   selectProject: (tabProps: TabProps) => void;
 };
-const Projects = ({ selectProject }: ProjectsProps): JSX.Element => {
+function Projects({ selectProject }: ProjectsProps): JSX.Element {
   console.log('[COMPONENT] Accueil');
   const [projects, setProjects] = useState<IProject[]>([]);
 
@@ -31,7 +31,7 @@ const Projects = ({ selectProject }: ProjectsProps): JSX.Element => {
             selectProject({
               title: v.name,
               active: true,
-              component: <ClassGenerator url="tst url" />,
+              component: <ClassGenerator projet={v} />,
             })
           }
           key={v.name}
@@ -56,6 +56,6 @@ const Projects = ({ selectProject }: ProjectsProps): JSX.Element => {
       ))}
     </div>
   );
-};
+}
 
 export default Projects;

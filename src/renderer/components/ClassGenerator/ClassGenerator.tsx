@@ -1,14 +1,20 @@
+import { useEffect } from 'react';
+import { IProject } from '../../../lib/types';
+
 type AppProp = {
-  url: string;
+  projet: IProject;
 };
 
-const ClassGenerator = ({ url }: AppProp) => {
+function ClassGenerator({ projet }: AppProp) {
+  console.log(projet);
+  useEffect(() => {}, []);
+
   return (
     <div>
       <h1>ClassGenerator</h1>
-      <div>Projet ouvert : {url}</div>
+      <div>Projet ouvert : {projet.name}</div>
     </div>
   );
-};
+}
 
 export default ClassGenerator;
