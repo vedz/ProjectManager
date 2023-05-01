@@ -5,9 +5,7 @@ import Tabs from '../components/Tabs/Tabs';
 
 function Index() {
   console.log('[COMPONENT] INDEX');
-
   const [tabs, setTabs] = useState<TabProps[]>([]);
-  console.log(tabs);
   const handleActiveTab = useCallback((title: string) => {
     console.log(`Active tab ${title}`);
     setTabs((prevState) => {
@@ -19,12 +17,12 @@ function Index() {
   }, []);
 
   const selectProject = (tabProp: TabProps) => {
-    console.log(tabs);
-    if (!tabs.find((v) => v.title === tabProp.title)) {
-      setTabs((prevState) => {
+    setTabs((prevState) => {
+      if (!prevState.find((v) => v.title === tabProp.title)) {
         return [...prevState, tabProp];
-      });
-    }
+      }
+      return prevState;
+    });
     handleActiveTab(tabProp.title);
   };
 
