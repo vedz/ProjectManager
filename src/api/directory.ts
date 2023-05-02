@@ -1,5 +1,6 @@
-import { FilesNameProject, IProject } from '../lib/types';
+import { IProject } from '../lib/types';
 import { technologiesKeys } from '../lib/technologies';
+import { FilesNameProject } from '../lib/filesNameProject';
 
 const fs = require('fs');
 const path = require('path');

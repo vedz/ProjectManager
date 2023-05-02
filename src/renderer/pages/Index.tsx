@@ -16,15 +16,18 @@ function Index() {
     });
   }, []);
 
-  const selectProject = (tabProp: TabProps) => {
-    setTabs((prevState) => {
-      if (!prevState.find((v) => v.title === tabProp.title)) {
-        return [...prevState, tabProp];
-      }
-      return prevState;
-    });
-    handleActiveTab(tabProp.title);
-  };
+  const selectProject = useCallback(
+    (tabProp: TabProps) => {
+      setTabs((prevState) => {
+        if (!prevState.find((v) => v.title === tabProp.title)) {
+          return [...prevState, tabProp];
+        }
+        return prevState;
+      });
+      handleActiveTab(tabProp.title);
+    },
+    [handleActiveTab]
+  );
 
   useEffect(() => {
     console.log('useEffect');
@@ -45,7 +48,7 @@ function Index() {
         return [];
       });
     };
-  }, []);
+  }, [selectProject]);
 
   return (
     <div>

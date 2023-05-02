@@ -6,11 +6,6 @@ export type TechnologiesTypes =
   | '@capacitor/core'
   | '@ionic/angular';
 
-export enum FilesNameProject {
-  PACKAGE_JSON = 'package.json',
-  COMPOSER_JSON = 'composer.json',
-}
-
 interface TechnologiesDetails {
   icon: string;
   label: string;
