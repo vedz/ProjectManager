@@ -8,7 +8,7 @@ type AppProps = {
 function Tabs({ tabs = [], activateTab }: AppProps): JSX.Element {
   console.log('[COMPONENT] TABS');
   return (
-    <div>
+    <div className="flex w-full ">
       {tabs.map((tab) => (
         <Tab
           key={tab.title}
@@ -17,6 +17,7 @@ function Tabs({ tabs = [], activateTab }: AppProps): JSX.Element {
           click={activateTab}
         />
       ))}
+      <div className="flex-1 border-b-[1px] border-b-ternary" />
     </div>
   );
 }

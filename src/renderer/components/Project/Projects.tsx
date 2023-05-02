@@ -8,6 +8,7 @@ import ClassGenerator from '../ClassGenerator/ClassGenerator';
 type ProjectsProps = {
   selectProject: (tabProps: TabProps) => void;
 };
+
 function Projects({ selectProject }: ProjectsProps): JSX.Element {
   console.log('[COMPONENT] Accueil');
   const [projects, setProjects] = useState<IProject[]>([]);
@@ -24,7 +25,6 @@ function Projects({ selectProject }: ProjectsProps): JSX.Element {
 
   return (
     <div className="grid gap-2 lg:grid-cols-4 grid-cols-3 p-3">
-      <input type="checkbox" />
       {projects.map((v) => (
         <div
           onClick={() =>
@@ -35,8 +35,8 @@ function Projects({ selectProject }: ProjectsProps): JSX.Element {
             })
           }
           key={v.name}
-          className="shadow-md p-3 hover:bg-blue-700 rounded-md cursor-pointer hover:shadow-lg
-           hover:shadow-blue-700/50 hover:text-white hover:-translate-y-2 transition-all flex flex-col"
+          className=" bg-white-80 shadow-md p-3 hover:bg-white-100 rounded-md cursor-pointer hover:shadow-lg
+            hover:text-white hover:-translate-y-[2px] transition-all flex flex-col"
         >
           <div className="text-xl py-5 text-center">{v.name}</div>
           {v.version && <div className="text-center">v{v.version}</div>}

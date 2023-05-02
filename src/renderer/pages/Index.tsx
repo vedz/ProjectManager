@@ -51,7 +51,7 @@ function Index() {
   }, [selectProject]);
 
   return (
-    <div>
+    <div className="h-full bg-primary">
       <Tabs tabs={tabs} activateTab={handleActiveTab} />
       <div>
         {tabs.map((t) => (
